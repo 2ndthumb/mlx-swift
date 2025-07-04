@@ -53,6 +53,7 @@ let package = Package(
                 // these are selected conditionally
                 "mlx/mlx/backend/no_cpu/compiled.cpp",
                 "mlx/mlx/backend/cpu/compiled.cpp",
+                // mlx-conditional/compiled_conditional.cpp",
 
                 // mlx files that are not part of the build
                 "mlx/ACKNOWLEDGMENTS.md",

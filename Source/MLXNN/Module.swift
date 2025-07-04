@@ -938,6 +938,25 @@ open class Module {
     /// - Parameter mode: `true` is training
     open func didSetTrain(_ mode: Bool) {
     }
+
+    /// Returns all sub-modules (layers) of this module.
+    ///
+    /// This is a convenience that flattens the module tree returned by `modules()`
+    /// while omitting `self`, so the returned list only contains the descendants
+    /// of the current module.
+    ///
+    /// - Returns: A flat array containing every `Module` that is nested under
+    ///   this instance.
+    public func submodules() -> [Module] {
+        // `modules()` returns `self` as the first element followed by all
+        // descendants.  Drop the first element so callers only get the
+        // true sub-modules.
+        var all = modules()
+        if !all.isEmpty {
+            all.removeFirst()
+        }
+        return all
+    }
 }
 
 extension Module: IndentedDescription {

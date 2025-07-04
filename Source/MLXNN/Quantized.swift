@@ -304,3 +304,18 @@ open class QuantizedLinear: Linear, Quantized {
         model.update(modules: updates)
     }
 }
+
+/// Quantizes just this single submodule to the given bit-width.
+/// Internally forwards to `quantize(model:groupSize:bits:)`.
+///
+/// - Parameters:
+///   - layer: The layer to quantize.
+///   - groupSize: Group size for the quantization (default: 64).
+///   - bits: Bit width for the quantization (default: 4).
+public func quantize(
+    layer: Module,
+    groupSize: Int = 64,
+    bits: Int = 4
+) async throws {
+    quantize(model: layer, groupSize: groupSize, bits: bits)
+}
