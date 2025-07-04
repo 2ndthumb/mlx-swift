@@ -1,4 +1,4 @@
 // Copyright © 2024 Apple Inc.
 
-#include "../mlx-generated/compiled_preamble.cpp"
+// Intentionally left empty; actual kernels are compiled via `mlx-generated/compiled_preamble.cpp`
 

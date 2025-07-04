@@ -15,6 +15,7 @@ let package = Package(
 
     products: [
         // main targets
+        // .library(name: "Cmlx", type: .dynamic, targets: ["Cmlx"]),
         .library(name: "MLX", targets: ["MLX"]),
         .library(name: "MLXRandom", targets: ["MLXRandom"]),
         .library(name: "MLXNN", targets: ["MLXNN"]),
@@ -30,6 +31,7 @@ let package = Package(
     targets: [
         .target(
             name: "Cmlx",
+            path: "Source/Cmlx",
             exclude: [
                 // vendor docs
                 "metal-cpp.patch",
@@ -52,8 +54,8 @@ let package = Package(
 
                 // these are selected conditionally
                 "mlx/mlx/backend/no_cpu/compiled.cpp",
-                "mlx/mlx/backend/cpu/compiled.cpp",
-                // mlx-conditional/compiled_conditional.cpp",
+                // "mlx/mlx/backend/cpu/compiled.cpp",
+                "mlx-conditional/compiled_conditional.cpp",
 
                 // mlx files that are not part of the build
                 "mlx/ACKNOWLEDGMENTS.md",
@@ -93,6 +95,8 @@ let package = Package(
                 // bnns instead of simd (accelerate)
                 "mlx/mlx/backend/cpu/gemms/simd_fp16.cpp",
                 "mlx/mlx/backend/cpu/gemms/simd_bf16.cpp",
+
+                // intentionally: keep compiled_preamble.cpp in sources
             ],
 
             cSettings: [
@@ -122,7 +126,8 @@ let package = Package(
         ),
         .testTarget(
             name: "CmlxTests",
-            dependencies: ["Cmlx"]
+            dependencies: ["Cmlx"],
+            path: "Tests/CmlxTests"
         ),
 
         .target(
